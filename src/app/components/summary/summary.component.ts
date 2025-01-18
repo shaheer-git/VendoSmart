@@ -15,11 +15,10 @@ export class SummaryComponent implements OnInit {
   constructor(private dataService: DataSharingService) { }
 
   ngOnInit(): void {
-    this.rows = this.dataService.getRows(); 
-    console.log(this.rows);
+    this.rows = this.dataService.getRefineData(); 
     this.totalRows = this.rows.length;
-    this.validRows = this.rows.filter(row => row.valid).length;
-    this.invalidRows = this.rows.filter(row => !row.valid).length;
+    this.invalidRows = this.rows.filter(row => Object.keys(row.errors).length).length;
+    this.validRows = this.totalRows - this.invalidRows;
   }
     restart(): void {
     // Restart the application and reset the data

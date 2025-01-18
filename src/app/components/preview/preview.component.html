@@ -17,12 +17,12 @@
             </thead>
             <tbody>
                 <tr *ngFor="let row of rows">
-                    <td [class.error]="hasError(row.Name, 'name')" >{{row.row.Name}}</td>
-                    <td [class.error]="hasError(row.Email, 'email')">{{ row.row.Email }}</td>
-                    <td [class.error]="hasError(row.Phone, 'phone')">{{ row.row.Phone }}</td>
-                    <td [class.error]="hasError(row.City, 'city')">{{ row.row.City }}</td>
-                    <td [class.error]="hasError(row.Address, 'address')">{{ row.row.Address }}</td>
-                    <td [class.error]="hasError(row.GPA, 'gpa')">{{ row.row.GPA }}</td>
+                    <td [ngClass]="{'text-error': row.errors.Name}">{{(!row.row.Name || row.errors.Name ) ? row.errors.Name : row.row.Name }}</td>
+                    <td [ngClass]="{'text-error': row.errors.Email}">{{ (!row.row.Email || row.errors.Email ) ? row.errors.Email : row.row.Email  }}</td>
+                    <td [ngClass]="{'text-error': row.errors.Phone}">{{ (!row.row.Phone || row.errors.Phone ) ? row.errors.Phone : row.row.Phone  }}</td>
+                    <td [ngClass]="{'text-error': row.errors.City}">{{ (!row.row.City || row.errors.City ) ? row.errors.City : row.row.City  }}</td>
+                    <td [ngClass]="{'text-error': row.errors.Address}">{{ (!row.row.Address || row.errors.Address ) ? row.errors.Address : row.row.Address  }}</td>
+                    <td [ngClass]="{'text-error': row.errors.GPA}">{{ (!row.row.GPA || row.errors.GPA ) ? row.errors.GPA : row.row.GPA  }}</td>
                 </tr>
             </tbody>
         </table>

@@ -1,3 +1,20 @@
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
 section {
     height: 80vh;
 }
@@ -27,11 +44,12 @@ thead {
     color: white;
 }
 
-/* tbody {
-    display: block;
-    max-height: 80vh;
+tbody {
     overflow-y: auto;
-}    */
+    display: block;
+    table-layout: fixed;
+    max-height: 80vh;
+}
 
 th,
 td {
@@ -90,4 +108,8 @@ td {
     background-color: #0d45a5;
     color: #fff;
     transform: translateY(-1px);
+}
+
+.text-error {
+    color: lightcoral;
 }

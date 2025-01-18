@@ -15,47 +15,30 @@ export class PreviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.rows = this.validateData(this.dataService.getRows());
-    console.log(this.rows);
-  }
-
-  hasError(value: any, column: string): boolean {
-    if (value === null || value === undefined || value === '') {
-      return true;
-    }
-
-    switch (column) {
-      case 'email':
-        return !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value); // Validate email format
-      case 'phone':
-        return !/^\d{10}$/.test(value); // Validate phone number (10 digits)
-      case 'gpa':
-        return isNaN(value) || value < 0 || value > 10; // Validate GPA (0-10)
-      default:
-        return false; // No error for other columns
-    }
+    this.dataService.setRefineData(this.rows);
   }
 
   validateRow(row: any) {
   const errors: any = {};
 
   if (!row.Name || typeof row.Name !== 'string') {
-    errors.Name = 'Empty value or invalid type for Name';
+    errors.Name = (!row.Name) ? 'Empty value Error' : 'Data Type mismatch error '; 
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(row.Email)) {
-    errors.Email = 'Invalid email format';
+    errors.Email = (!row.Email) ? 'Empty value Error' : 'Data Type mismatch error '; 
   }
   if (!/^\d{10}$/.test(row.Phone)) {
-    errors.Phone = 'Phone number must be a 10-digit numeric value';
+    errors.Phone = (!row.Phone) ? 'Empty value Error' : 'Data Type mismatch error '; 
   }
   if (!row.City || typeof row.City !== 'string') {
-    errors.City = 'Empty value or invalid type for City';
+    errors.City = (!row.City) ? 'Empty value Error' : 'Data Type mismatch error '; 
   }
   if (!row.Address || typeof row.Address !== 'string') {
-    errors.Address = 'Empty value or invalid type for Address';
+    errors.Address = (!row.Address) ? 'Empty value Error' : 'Data Type mismatch error '; 
   }
   const gpa = parseFloat(row.GPA);
   if (isNaN(gpa) || gpa < 0 || gpa > 10) {
-    errors.GPA = 'GPA must be a number between 0 and 10';
+    errors.GPA = isNaN(gpa) ? 'Data Type mismatch error': 'GPA must be a number between 0 and 10';
   }
 
   return errors;
@@ -72,6 +55,6 @@ validateData(rows: any) {
   });
 }
 navigateToSummary(): void {
-  this.router.navigate(['/summary']); // Navigate to the summary page
+  this.router.navigate(['/summary']);
 }
 }
