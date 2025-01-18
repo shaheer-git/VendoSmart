@@ -1,0 +1,13 @@
+<section>
+    <form class="form">
+        <span class="form-title">Upload your file</span>
+        <p class="form-paragraph">
+            File should be in a (.CSV) format
+        </p>
+        <label for="file-input" class="drop-container">
+            <input id="file-input" type="file" accept=".csv" (change)="onFileUpload($event)" />
+            <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+        </label>
+    </form>
+    <button class="button" (click)="navigateToPreview()">Preview</button>
+</section>

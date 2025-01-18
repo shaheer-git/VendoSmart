@@ -1,0 +1,30 @@
+<section>
+    <div class="preview-container">
+        <div class="heading-container">
+            <h2>Preview Data</h2>
+            <button class="button" (click)="navigateToSummary()">View Summary</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>City</th>
+                    <th>Address</th>
+                    <th>GPA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of rows">
+                    <td [class.error]="hasError(row.Name, 'name')" >{{row.row.Name}}</td>
+                    <td [class.error]="hasError(row.Email, 'email')">{{ row.row.Email }}</td>
+                    <td [class.error]="hasError(row.Phone, 'phone')">{{ row.row.Phone }}</td>
+                    <td [class.error]="hasError(row.City, 'city')">{{ row.row.City }}</td>
+                    <td [class.error]="hasError(row.Address, 'address')">{{ row.row.Address }}</td>
+                    <td [class.error]="hasError(row.GPA, 'gpa')">{{ row.row.GPA }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
